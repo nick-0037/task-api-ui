@@ -26,6 +26,8 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  justify-content: center;
+  text-align: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -35,11 +37,22 @@ h1 {
   line-height: 1.1;
 }
 
+input {
+  outline: none;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 8px;
+}
+
+input::placeholder {
+  color: #3726ce;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 12px;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -47,11 +60,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #3726ce;
 }
 
 @media (prefers-color-scheme: light) {
