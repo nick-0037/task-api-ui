@@ -1,0 +1,11 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  
+}
+
+.bts-login {
+  display: flex;
+  place-content: center; 
+  gap: 10px;
+}

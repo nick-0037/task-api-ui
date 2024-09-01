@@ -1,0 +1,11 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bts-register {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
