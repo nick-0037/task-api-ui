@@ -1,34 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import TaskInput from './components/TaskInput'
+import TaskList from './components/TaskList'
+import Login from './components/Login'
+import Register from './components/Register'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([])
+  const [isRegistering, setIsRegistering] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleLogin = (token) => {
+    localStorage.setItem('token', token)
+    setIsLoggedIn(true)
+  }
+
+  const handleAddTask = (newTask) => {
+    setTasks(prevTask => [...prevTask, newTask])
+  }
+
+  const handleToggleComplete = (taskId) => {
+    setTasks(prevTasks => 
+      prevTasks.map(task => 
+        task.id === taskId ? {...task, completed: !task.completed} : task
+      )
+    )
+  }
+
+  const handleDeleteTask = (taskId) => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId))
+
+    fetch(`https://task-api-fawn.vercel.app/api/tasks/${taskId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => response.json())
+    .catch(error => console.error('Network error', error))
+  }
+
+  const handleRegister = () => {
+    setIsRegistering(true)
+  }
+
+  const handleBackToLogin = () => {
+    setIsRegistering(false)
+  }
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      fetch('https://task-api-fawn.vercel.app/api/tasks', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => setTasks(data))
+      .catch(error => console.error('Error fetching tasks:', error))
+    }
+  }, [isLoggedIn])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+      <h1>task-api</h1>
+      {isLoggedIn ? (
+        <>
+          <div className='logged-container'>
+            <TaskInput onTaskAdd={handleAddTask}/>
+            <TaskList tasks={tasks} onToggleCompleted={handleToggleComplete} onDeleteTask={handleDeleteTask}/>
+          </div>
+        </>
+      ) : (
+        isRegistering ? (
+        <Register onRegister={handleBackToLogin}/>
+      ) : ( 
+        <Login onLogin={handleLogin} onRegister={handleRegister} />
+        )
+      )}
+    </main>
   )
 }
 
