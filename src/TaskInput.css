@@ -1,0 +1,38 @@
+.task-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.input {
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.button-container {
+  align-self: flex-end;
+}
+
+.button {
+  width: fit-content;
+}
+
+.textarea {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 120px;
+  max-height: 200px;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  field-sizing: content;
+  padding: 12px;
+  padding-top: 60px;
+}

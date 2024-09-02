@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 20px;
+  gap: 14px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  margin: 0;
+  width: 600px;
+  overflow-y: auto;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-category {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.complete-container {
+  display: flex;
+  place-content: center;
+  gap: 10px;
+}
