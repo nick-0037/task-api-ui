@@ -10,7 +10,6 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [isRegistering, setIsRegistering] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('user')
