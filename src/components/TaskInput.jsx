@@ -8,25 +8,11 @@ function TaskInput({onTaskAdd}) {
   const handleAddTask = () => {
     if(title.trim() === '' || description.trim() === '') return
 
-    const token = localStorage.getItem('token')
-
-    fetch('https://task-api-fawn.vercel.app/api/tasks', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({title, description})
-    })
-      .then(response => response.json())
-      .then(newTask => {
-        onTaskAdd(newTask)
-        setTitle('')
-        setDescription('')
-      })
-      .catch(error => console.error(error))
-
+    onTaskAdd({title, description})
+    setTitle('')
+    setDescription('')
   }
+
   return (
     <div className="task-input">
       <input
@@ -43,9 +29,9 @@ function TaskInput({onTaskAdd}) {
       placeholder="Description"
       />
       <div className="button-container">
-        <button onClick={handleAddTask}>Add Task</button>
+        <button onClick={handleAddTask}>Save Task</button>
       </div>
-    </div>
+    </div>    
   )
 }
 

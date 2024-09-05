@@ -1,24 +1,23 @@
 import { useState } from "react";
 import '../Register.css'
+import registerServices from '../services/Register'
 
 function Register({onRegister, onLogin}) {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
 
-    fetch('https://task-api-fawn.vercel.app/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name, username, password})
-    })
-    .then(response => response.json())
-    .then(onRegister())
-    .catch(error => console.error('Fail register error', error))
+    try {
+      if(!name || !username || !password) return 
+
+      const newUser = await registerServices.createUser({name, username, password})
+      onRegister(newUser)
+    } catch(err) {
+      console.error('Registration failed', err)
+    }
   }
 
   return (
@@ -40,7 +39,7 @@ function Register({onRegister, onLogin}) {
           />
         </div>
         <div>
-          <input type="text" 
+          <input type="password" 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
@@ -48,7 +47,7 @@ function Register({onRegister, onLogin}) {
         </div>
         <div className="bts-register">
           <button type="submit">Register</button>
-          <button onClick={onLogin}>Login</button>
+          <button type="button" onClick={onLogin}>Login</button>
         </div>
       </form>
     </div>
