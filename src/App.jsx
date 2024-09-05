@@ -26,8 +26,7 @@ function App() {
     }
   }, [])
 
-  const handleLogin = (user) => {
-    setUser(user)
+  const handleLogin = () => {
     setIsLoggedIn(true)
   }
   
@@ -35,7 +34,6 @@ function App() {
     window.localStorage.removeItem('user')
     window.localStorage.removeItem('token')
 
-    setUser(null)
     setIsLoggedIn(false)
   }
 
