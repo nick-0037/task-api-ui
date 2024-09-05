@@ -20,8 +20,6 @@ function App() {
     }
 
     if (loggedUserJSON) {
-      // const user = JSON.parse(loggedUserJSON)
-      // setUser(user)
       setIsLoggedIn(true)
     }
   }, [])
