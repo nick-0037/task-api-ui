@@ -3,7 +3,6 @@ import TaskInput from './components/TaskInput'
 import TaskList from './components/TaskList'
 import Login from './components/Login'
 import Register from './components/Register'
-// import loginService from './services/Login'
 import { createTask, deleteTask, setToken, getAllTasks } from './services/Tasks'
 
 function App() {
