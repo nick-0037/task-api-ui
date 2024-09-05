@@ -83,8 +83,39 @@ button:hover {
   gap: 50px
 }
 
+.logged-container button {
+  height: fit-content;
+  
+}
+
 @media (max-width: 768px) {
   .logged-container {
     flex-direction: column;
+    place-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .list {
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-category {
+    display: flex;
+    flex-direction: column;
+    place-self: start;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .list li {
+    flex-direction: column;
+    gap: 20px;
   }
 }

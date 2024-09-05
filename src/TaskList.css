@@ -36,6 +36,6 @@ p {
 
 .complete-container {
   display: flex;
-  place-content: center;
+  align-items: center;
   gap: 10px;
 }
