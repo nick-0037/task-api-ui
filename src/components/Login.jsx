@@ -5,15 +5,12 @@ import '../Login.css'
 function Login({onLogin, onRegister}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if(username.trim() === '' || password.trim() === '') {
-      setError('Username and password are required')
-      return
-    }
+    if(username.trim() === '' || password.trim() === '') return
       
     try {
       const user = await loginService.login({
@@ -29,7 +26,6 @@ function Login({onLogin, onRegister}) {
       }
     } catch(err) {
       console.error('Error during login', err)
-      setError('Invalid credentials')
     }
     setUsername('')
     setPassword('')
