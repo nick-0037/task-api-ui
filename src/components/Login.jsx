@@ -36,11 +36,13 @@ function Login({onLogin, onRegister}) {
       <h2>Login</h2>
       <form className='login' onSubmit={handleSubmit}>
         <input type="text"
+        name="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
         />
-        <input type="password" 
+        <input type="password"
+        name="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"

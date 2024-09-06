@@ -25,14 +25,16 @@ function Register({onRegister, onLogin}) {
       <h2>Register</h2>
       <form className="register-form" onSubmit={handleRegister}>
         <div>
-          <input type="text" 
+          <input type="text"
+          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
           />
         </div>
         <div>
-          <input type="text" 
+          <input type="text"
+          name="username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
@@ -40,6 +42,7 @@ function Register({onRegister, onLogin}) {
         </div>
         <div>
           <input type="password" 
+          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
