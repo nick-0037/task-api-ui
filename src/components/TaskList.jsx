@@ -1,8 +1,9 @@
+import React from 'react'
 import '../TaskList.css'
 
 function TaskList({tasks, onToggleCompleted, onDeleteTask}) {
 
-  const displayedTasks = tasks.slice(-8)
+  const displayedTasks = tasks > 0 ? tasks.slice(-8) : []
 
   return (
     <ul className="list">
